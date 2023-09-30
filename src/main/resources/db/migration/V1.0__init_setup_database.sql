@@ -185,14 +185,14 @@ CREATE TABLE solicitudes
     no_soporte          VARCHAR(50)  NOT NULL,
     descripcion         VARCHAR(100) NOT NULL,
     fecha_recepcion     DATE         NOT NULL,
-    estado_solicitud_id INT          NOT NULL,
+    --estado_solicitud_id INT          NOT NULL,
     cliente_id          INT          NOT NULL,
     longitud            INT          NOT NULL,
     latitud             INT          NOT NULL,
     fecha_creacion      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (tipo_soporte_id) REFERENCES tipo_soportes (id),
-    FOREIGN KEY (estado_solicitud_id) REFERENCES estado_solicitudes (id),
+    --FOREIGN KEY (estado_solicitud_id) REFERENCES estado_solicitudes (id),
     FOREIGN KEY (cliente_id) REFERENCES clientes (usuario_id)
 );
 CREATE TABLE muestras
@@ -262,12 +262,12 @@ CREATE TABLE trazabilidad_solicitudes
 (
     id             SERIAL PRIMARY KEY,
     solicitud_id   INT          NOT NULL,
-    estado_id      INT          NOT NULL,
+    estado_solicitud_id      INT          NOT NULL,
     observaciones  VARCHAR(100) NOT NULL,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (solicitud_id) REFERENCES solicitudes (id),
-    FOREIGN KEY (estado_id) REFERENCES estado_solicitudes (id)
+    FOREIGN KEY (estado_solicitud_id) REFERENCES estado_solicitudes (id)
 );
 
 CREATE TABLE items_solicitud_analisis
